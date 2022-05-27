@@ -1,0 +1,188 @@
+'''
+from tkinter import messagebox, Tk, Button
+
+def btn1_func():
+    messagebox.askyesno("Hello Mundo", "Olá eu trabalho para o Esdras")
+    window = Tk()
+    window.geometry("500x300")
+    window['bg'] = 'black'
+    window.state("zoomed")
+    window.iconbitmap('mario.ico')
+    window.mainloop()
+
+window = Tk()
+window.title('Minha primeira função')
+window.geometry("900x800")
+window.resizable(True, True)
+
+btn1 = Button(window, text = "Aqui", command = btn1_func)
+btn1.place(x = 50, y = 50)
+
+window.mainloop()
+
+'''
+
+
+from tkinter import Tk, Menu
+
+def pare():
+    window.destroy()
+
+window = Tk()
+window.title('Minha segunda função')
+window.geometry("900x800")
+#window.iconbitmap('mario.ico')
+window.resizable(True, True)
+
+menu = Menu(window)
+new_item = Menu(menu)
+new_item.add_command(label='New')
+new_item.add_separator()
+new_item.add_command(label = 'Sair', command = pare)
+
+menu.add_cascade(label = 'File' , menu = new_item)
+window.config(menu = menu)
+
+window.mainloop()
+
+'''
+
+from tkinter import *
+root =Tk()
+class App():
+    def __init__(self):
+        self.root = root
+        self.config()
+        self.calculadora()
+        root.mainloop()
+    def config(self):
+        self.root.title("Calculadora muito simples")
+        self.root.geometry("400x250")
+        self.root.resizable(False, False)
+    def calculadora(self):
+        self.lbl1 = Label(text='Primeiro número: ')
+        self.lbl1.place(relx=0.15,rely=0.1)
+        self.numero1 = DoubleVar()
+        self.lbl1_enty = Entry(textvariable=self.numero1)
+        self.lbl1_enty.place(relx=0.45,rely=0.1)
+        self.lbl2 = Label(text='Segundo número: ')
+        self.lbl2.place(relx=0.15, rely=0.25)
+        self.numero2 = DoubleVar()
+        self.lbl2_enty = Entry(textvariable=self.numero2)
+        self.lbl2_enty.place(relx=0.45, rely=0.25)
+      # Resultado
+        self.lbl3 = Label(text='Resultado')
+        self.lbl3.place(relx=0.3, rely=0.7)
+        self.resultado = StringVar()
+        self.l_resultado = Label(textvariable=self.resultado, font=("Helvetica", '8'))
+        self.l_resultado.place(relx=0.5, rely=0.7)
+
+       #Butão
+        self.btn1 = Button(text='Soma',command=self.soma)
+        self.btn1.place(relx=0.15, rely=0.45)
+        self.btn2 = Button(text='Subtração',command=self.sub)
+        self.btn2.place(relx=0.3, rely=0.45)
+        self.btn3 = Button(text='Divisão',command=self.div)
+        self.btn3.place(relx=0.5, rely=0.45)
+        self.btn4 = Button(text='Multiplicação',command=self.mult)
+        self.btn4.place(relx=0.65, rely=0.45)
+
+    def soma(self):
+        num1 = self.numero1.get()
+        num2 = self.numero2.get()
+        resul = num1 + num2
+        self.resultado.set(resul)
+    def sub(self):
+      num1 = self.numero1.get()
+      num2 = self.numero2.get()
+      resul = num1 - num2
+      self.resultado.set(resul)
+    def mult(self):
+        num1 = self.numero1.get()
+        num2 = self.numero2.get()
+        resul = num1 * num2
+        self.resultado.set(resul)
+    def div(self):
+        num1 = self.numero1.get()
+        num2 = self.numero2.get()
+        resul = round((num1 / num2),2)
+        self.resultado.set(resul)
+        
+App()
+
+
+
+
+
+
+
+
+from tkinter import *
+import tkinter.font as font 
+  
+  
+  
+root = Tk() 
+root.geometry("380x400") 
+root.title("Calculator") 
+root.resizable(0, 0) 
+inp = StringVar() 
+myFont = font.Font(size=15) 
+  
+screen = Entry(root, text=inp, width=30,  
+               justify='right', font=(10), bd=4) 
+screen.grid(row=0, columnspan=4, padx=15, 
+            pady=15, ipady=5) 
+key_matrix = [["c", u"\u221A", "/", "<-"],  
+              ["7", "8", "9", "*"], 
+              ["4", "5", "6", "-"],  
+              ["1", "2", "3", "+"], 
+              ["!", 0, ".", "="]] 
+btn_dict = {} 
+ans_to_print = 0
+def Calculate(event): 
+    
+    
+button = event.widget.cget("text") 
+  
+    
+    global key_matrix, inp, ans_to_print 
+  
+    try:
+        if button == u"\u221A": 
+            ans = float(inp.get())**(0.5) 
+            ans_to_print = str(ans) 
+            inp.set(str(ans)) 
+        elif button == "c":  
+                    inp.set("") 
+        elif button == "!":  
+                    def fact(n): return 1 if n == 0 else n*fact(n-1) 
+                    inp.set(str(fact(int(inp.get())))) 
+        elif button == "<-":  
+                    inp.set(inp.get()[:len(inp.get())-1]) 
+        elif button == "=":  
+                      ans_to_print = str(eval(inp.get())) 
+                    inp.set(ans_to_print) 
+        else: 
+                      inp.set(inp.get()+str(button)) 
+          
+            except: 
+              inp.set("Wrong Operation") 
+  
+  
+  
+for i in range(len(key_matrix)):   
+    
+    for j in range(len(key_matrix[i])):   
+        btn_dict["btn_"+str(key_matrix[i][j])] = Button( 
+          root, bd=1, text=str(key_matrix[i][j]), font=myFont) 
+        
+        btn_dict["btn_"+str(key_matrix[i][j])].grid( 
+          row=i+1, column=j, padx=5, pady=5, ipadx=5, ipady=5) 
+        
+        btn_dict["btn_"+str(key_matrix[i][j])].bind('<Button-1>', Calculate) 
+
+root.mainloop()
+
+
+

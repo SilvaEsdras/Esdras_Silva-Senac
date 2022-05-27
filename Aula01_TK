@@ -1,0 +1,5 @@
+import tkinter
+
+aluno = tkinter.Tk()
+aluno.title("Senac")
+aluno.mainloop()

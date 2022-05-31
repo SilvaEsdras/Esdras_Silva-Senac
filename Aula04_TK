@@ -45,7 +45,6 @@ conn.close()
 
 
 
-
 # 04_create_data_nrecords.py
 import sqlite3
 

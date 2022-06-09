@@ -1,6 +1,4 @@
 
-
-
 from tkinter import messagebox, Tk, Button
 
 def btn1_func():

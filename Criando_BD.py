@@ -1,4 +1,4 @@
-
+#
 import sqlite3
 # conectando
 bd = sqlite3.connect('nome.db')

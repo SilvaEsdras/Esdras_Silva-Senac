@@ -1,0 +1,29 @@
+import qrcode
+from tkinter import *
+
+
+    
+window = Tk()
+window.title('My Title')
+window.geometry("400x500")
+#window.iconbitmap('app.ico')
+window.resizable(False, False)
+
+Fullname=StringVar()
+
+def criar():
+    Nome = Fullname.get()
+    image_qrcode = qrcode.make("Nome")
+    image_qrcode.save("qrcode_05.jpg")
+    
+
+linha_1 = Label(window, text="QRCODE Número", width=20, font=("bold", 10))
+linha_1.place(x=10, y=130)
+
+entrada_1 = Entry(window, text=Fullname)
+entrada_1.place(x=40, y=150)
+
+btn1 = Button(window, text = "criar", command = criar)
+btn1.place(x = 210, y = 145)
+
+window.mainloop()
